@@ -6,7 +6,7 @@ const User            = require('../models/user');
 const flash           = require('express-flash');
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
+  res.render('index', {title: "Amiplate"});
 });
 
 /* SIGNUP ROUTE */
@@ -56,7 +56,11 @@ router.route('/login')
 
 /* PROFILE ROUTE */
 router.get('/profile', passportConfig.isAuthenticated, (req, res, next) => {
-  res.render('accounts/profile');
+  res.render('accounts/profile', {});
+});
+
+router.get('/image-upload', (req, res, next) => {
+  res.render('file-upload/form.ejs', {});
 });
 
 module.exports = router;
