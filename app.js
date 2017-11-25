@@ -10,8 +10,9 @@ const passport      = require('passport');
 const flash         = require('express-flash');
 const mongoose      = require('mongoose');
 
-var index = require('./routes/index');
-var users = require('./routes/users');
+var index       = require('./routes/index');
+var users       = require('./routes/users');
+var fileUpload  = require('./routes/file-upload');
 
 const config = require('./config/secret');
 const sessionStore = new MongoStore({ url: config.database, autoReconnect: true });
@@ -51,6 +52,7 @@ app.use(function(req, res, next) {
 
 
 app.use('/', users);
+app.use('/file-upload', fileUpload);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -59,8 +59,4 @@ router.get('/profile', passportConfig.isAuthenticated, (req, res, next) => {
   res.render('accounts/profile', {});
 });
 
-router.get('/image-upload', (req, res, next) => {
-  res.render('file-upload/form.ejs', {});
-});
-
 module.exports = router;

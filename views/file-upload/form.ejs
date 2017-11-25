@@ -7,18 +7,18 @@
   <div class="container">
       <div class="row">
         <div class="col-md-6 col-md-offset-3">
-        <h1 class="space-top text-center">Image Upload</h1>
+        <h1 class="space-top text-center"><%= title %></h1>
     
           <hr />
     
-          <form role="form" method="post">
+          <form role="form" method="post" enctype="multipart/form-data" action="">
             
             <div class="form-group">
-              <label for="password">Image:</label>
-              <input type="file" class="form-control" name="image" id="image">
+              <label for="password"><%= formName %>:</label>
+              <input type="file" class="form-control" name="myimage" id="myimage">
             </div>
     
-          <button type="submit" class="btn btn-success">Submit</button>
+          <button type="submit" name="submit" class="btn btn-success">Submit</button>
     
         </form>
         <hr>
