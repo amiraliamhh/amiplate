@@ -13,6 +13,7 @@ const mongoose      = require('mongoose');
 var index       = require('./routes/index');
 var users       = require('./routes/users');
 var fileUpload  = require('./routes/file-upload');
+var imageUpload = require('./routes/image-upload');
 
 const config = require('./config/secret');
 const sessionStore = new MongoStore({ url: config.database, autoReconnect: true });
@@ -49,10 +50,9 @@ app.use(function(req, res, next) {
   next();
 });
 
-
-
 app.use('/', users);
 app.use('/file-upload', fileUpload);
+app.use('/image-upload', imageUpload);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

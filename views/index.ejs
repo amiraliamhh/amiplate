@@ -3,7 +3,7 @@
   <head>
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
-    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">    
   </head>
   <body>
     <h1><%= title %></h1>
@@ -12,14 +12,22 @@
     <p>The main goal of this project, is to show you how to use Nodejs, Express and some useful NPM packages.</p>
     <p>Using links below, you can see different parts of this app. finding source code of each link is easy, and you can manipulate them to make them sutable for your own project.</p>
     
-    <a href="/signup">Sign Up</a>
-    <br><br>
-    <a href="/login">Login</a>
-    <br><br>
-    <a href="/profile">Profile</a>
-    <br><br>
-    <a href="/image-upload">Image Upload</a>
-    <br><br>
-    <a href="/file-upload">File Upload</a>
+    <div class="row">
+      <div class="col-sm-6 col-md-4">
+        <a href="/signup" class="btn btn-success">Sign Up</a>
+        <br><br>
+        <a href="/login" class="btn btn-success">Login</a>
+        <br><br>
+        <a href="/profile" class="btn btn-success">Profile</a>
+        <br><br>
+        <a href="/image-upload" class="btn btn-success">Image Upload</a>
+        <br><br>
+        <a href="/file-upload" class="btn btn-success">File Upload</a>
+      </div>
+      <div class="col-sm-6 col-md-4">
+        
+      </div>      
+    </div>
+    
   </body>
 </html>
