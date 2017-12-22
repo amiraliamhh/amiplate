@@ -9,21 +9,37 @@ const MongoStore    = require('connect-mongo')(session);
 const passport      = require('passport');
 const flash         = require('express-flash');
 const mongoose      = require('mongoose');
+const mysql         = require('mysql');
+const term          = require('terminal-kit').terminal;
 
-var index       = require('./routes/index');
-var users       = require('./routes/users');
-var fileUpload  = require('./routes/file-upload');
-var imageUpload = require('./routes/image-upload');
+var index         = require('./routes/index');
+var users         = require('./routes/users');
+var fileUpload    = require('./routes/file-upload');
+var imageUpload   = require('./routes/image-upload');
+var completeForm  = require('./routes/complete-form');
+
+mongoose.Promise = global.Promise;
 
 const config = require('./config/secret');
-const sessionStore = new MongoStore({ url: config.database, autoReconnect: true });
+const sessionStore = new MongoStore({ mongooseConnection: mongoose.connection, url: config.database, autoReconnect: true });
 
 var app = express();
 
-mongoose.connect(config.database, function(err) {
+mongoose.connect(config.database, { useMongoClient: true },function(err) {
   if (err) console.log(err);
   console.log("Connected to the database");
 });
+
+var con = mysql.createConnection({
+  host: "localhost",
+  user: "",
+  password: ""
+});
+
+con.connect((err) => {
+  if (err) throw err;
+  term.green('Connected To MySQL');
+})
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -40,7 +56,7 @@ app.use(session({
   resave: true,
   saveUninitialized: true,
   secret: config.secret,
-  store: new MongoStore({ url: config.database, autoReconnect: true })
+  store: new MongoStore({ mongooseConnection: mongoose.connection, url: config.database, autoReconnect: true })
 }));
 app.use(passport.initialize());
 app.use(passport.session());
@@ -53,6 +69,7 @@ app.use(function(req, res, next) {
 app.use('/', users);
 app.use('/file-upload', fileUpload);
 app.use('/image-upload', imageUpload);
+app.use('/complete-form', completeForm);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
